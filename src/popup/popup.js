@@ -71,7 +71,7 @@ function startCountdown() {
       const res = await chrome.runtime.sendMessage({ type: 'GET_NEXT_PRAYER' });
       if (!res?.success || !res.data) {return;}
       const { name, time } = res.data;
-      const timeDate = new Date(time);
+      const timeDate = time instanceof Date ? time : new Date(time);
       const remaining = getTimeRemaining(timeDate);
 
       document.getElementById('next-prayer-name').textContent = t(name);
@@ -85,11 +85,20 @@ function startCountdown() {
   countdownInterval = setInterval(tick, 1000);
 }
 
+function rehydrateTimes(data) {
+  if (!data || !data.times) {return data;}
+  const fixed = { ...data, times: {} };
+  for (const [name, val] of Object.entries(data.times)) {
+    fixed.times[name] = val instanceof Date ? val : new Date(val);
+  }
+  return fixed;
+}
+
 async function render() {
   try {
     const res = await chrome.runtime.sendMessage({ type: 'GET_TODAY' });
     if (!res?.success || !res.data) {return;}
-    const data = res.data;
+    const data = rehydrateTimes(res.data);
     const now = new Date();
 
     renderPrayerList(data.times, now);

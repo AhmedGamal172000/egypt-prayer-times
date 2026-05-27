@@ -11,6 +11,7 @@ html, body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
+  overflow: hidden;
 }
 
 .extended-container {
@@ -20,39 +21,37 @@ html, body {
   justify-content: center;
   min-height: 100vh;
   text-align: center;
-  padding: 24px;
+  padding: clamp(12px, 3vw, 32px);
+  gap: clamp(6px, 1.5vh, 16px);
 }
 
 .extended-label {
-  font-size: 14px;
+  font-size: clamp(10px, 2vw, 14px);
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--muted);
-  margin-bottom: 12px;
 }
 
 .extended-name {
-  font-size: 52px;
+  font-size: clamp(28px, 8vw, 52px);
   font-weight: 900;
-  margin-bottom: 16px;
 }
 
 .extended-countdown {
-  font-size: 72px;
+  font-size: clamp(36px, 12vw, 72px);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
   color: var(--accent);
-  margin-bottom: 12px;
   letter-spacing: 2px;
+  line-height: 1.1;
 }
 
 .extended-time {
-  font-size: 22px;
+  font-size: clamp(14px, 3vw, 22px);
   color: var(--muted);
-  margin-bottom: 8px;
 }
 
 .extended-date {
-  font-size: 14px;
+  font-size: clamp(11px, 2vw, 14px);
   color: var(--muted);
 }

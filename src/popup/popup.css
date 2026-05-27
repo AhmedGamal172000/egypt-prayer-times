@@ -185,6 +185,24 @@ body { padding: 12px; }
   letter-spacing: 0.5px;
 }
 
+.attribution {
+  font-size: 10px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 6px;
+  opacity: 0.7;
+}
+
+.attribution a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
 /* RTL support */
 [dir="rtl"] .prayer-info { flex-direction: row-reverse; }
 [dir="rtl"] .header-top { flex-direction: row-reverse; }

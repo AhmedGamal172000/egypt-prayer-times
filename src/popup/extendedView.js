@@ -38,7 +38,7 @@ async function update() {
     const res = await chrome.runtime.sendMessage({ type: 'GET_NEXT_PRAYER' });
     if (!res?.success || !res.data) {return;}
     const { name, time } = res.data;
-    const timeDate = new Date(time);
+    const timeDate = time instanceof Date ? time : new Date(time);
     const remaining = getTimeRemaining(timeDate);
 
     document.getElementById('label').textContent = t('NextPrayer');
