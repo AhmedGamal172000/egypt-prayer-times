@@ -107,6 +107,7 @@ export const DEFAULT_SETTINGS = {
 export const ALARMS = {
   DAILY_SYNC: 'daily-sync',
   MINUTE_TICK: 'minute-tick',
+  HOURLY_REFRESH: 'hourly-refresh',
   SYNC_HOUR: 3,
   SYNC_MINUTE: 0
 };

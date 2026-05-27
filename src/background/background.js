@@ -26,9 +26,12 @@ function setupAlarms() {
     periodInMinutes: 60 * 24
   });
   chrome.alarms.create(ALARMS.MINUTE_TICK, { periodInMinutes: 1 });
+  chrome.alarms.create(ALARMS.HOURLY_REFRESH, { periodInMinutes: 60 });
 
   chrome.alarms.onAlarm.addListener(async (alarm) => {
     if (alarm.name === ALARMS.DAILY_SYNC) {
+      await refreshPrayerTimes();
+    } else if (alarm.name === ALARMS.HOURLY_REFRESH) {
       await refreshPrayerTimes();
     } else if (alarm.name === ALARMS.MINUTE_TICK) {
       await updateBadge();

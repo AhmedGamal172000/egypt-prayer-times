@@ -1,6 +1,6 @@
 import './popup.css';
 import { PRAYER_NAMES, DATA_SOURCE, DEFAULT_SETTINGS } from '../shared/config.js';
-import { formatTime, formatGregorianDate, formatHijriDate, getTimeRemaining, formatCountdown } from '../shared/utils.js';
+import { formatTime, formatGregorianDate, formatHijriFromAPI, getTimeRemaining, formatCountdown } from '../shared/utils.js';
 
 let settings = { ...DEFAULT_SETTINGS };
 let clockInterval = null;
@@ -9,10 +9,19 @@ let countdownInterval = null;
 async function init() {
   settings = await getSettings();
   applyLanguageDirection();
-  await render();
+  await refreshAndRender();
   startClock();
   startCountdown();
   setupListeners();
+}
+
+async function refreshAndRender() {
+  try {
+    await chrome.runtime.sendMessage({ type: 'REFRESH_TIMES' });
+  } catch (e) {
+    console.error('[Popup] refresh failed', e);
+  }
+  await render();
 }
 
 async function getSettings() {
@@ -55,11 +64,9 @@ function setupListeners() {
 
 function startClock() {
   const el = document.getElementById('current-time');
-  const dateEl = document.getElementById('current-date');
   const tick = () => {
     const now = new Date();
     el.textContent = now.toLocaleTimeString(settings.language === 'ar' ? 'ar-EG' : 'en-US', { hour12: settings.timeFormat === '12h' });
-    dateEl.textContent = `${formatGregorianDate(now, settings.language === 'ar' ? 'ar-EG' : 'en-US')} · ${formatHijriDate(now)}`;
   };
   tick();
   clockInterval = setInterval(tick, 1000);
@@ -101,11 +108,20 @@ async function render() {
     const data = rehydrateTimes(res.data);
     const now = new Date();
 
+    renderDate(data.hijri);
     renderPrayerList(data.times, now);
     renderStatus(data.source);
   } catch (e) {
     console.error('[Popup] render failed', e);
   }
+}
+
+function renderDate(hijri) {
+  const dateEl = document.getElementById('current-date');
+  const now = new Date();
+  const gregorian = formatGregorianDate(now, settings.language === 'ar' ? 'ar-EG' : 'en-US');
+  const hijriStr = formatHijriFromAPI(hijri, settings.language);
+  dateEl.textContent = hijriStr ? `${gregorian} · ${hijriStr}` : gregorian;
 }
 
 function renderPrayerList(times, now) {
@@ -153,12 +169,9 @@ function renderStatus(source) {
   if (source === DATA_SOURCE.LIVE) {
     dot.classList.add('live');
     text.textContent = t('Live');
-  } else if (source === DATA_SOURCE.CACHED) {
+  } else {
     dot.classList.add('cached');
     text.textContent = t('Cached');
-  } else {
-    dot.classList.add('calculated');
-    text.textContent = t('Calculated');
   }
 }
 

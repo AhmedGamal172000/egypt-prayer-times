@@ -40,6 +40,23 @@ export function formatHijriDate(date) {
 }
 
 /**
+ * Format Hijri date from Aladhan API response object.
+ * @param {Object} hijri - API hijri object { day, month: {en, ar}, year }
+ * @param {string} locale - 'en' | 'ar'
+ * @returns {string}
+ */
+export function formatHijriFromAPI(hijri, locale = 'en') {
+  if (!hijri || !hijri.day || !hijri.month || !hijri.year) {
+    return '';
+  }
+  const day = hijri.day;
+  const month = locale === 'ar' ? (hijri.month.ar || hijri.month.en) : hijri.month.en;
+  const year = hijri.year;
+  const suffix = locale === 'ar' ? 'هـ' : 'AH';
+  return `${day} ${month} ${year} ${suffix}`;
+}
+
+/**
  * Format a Date to Gregorian date string.
  * @param {Date} date
  * @param {string} locale
