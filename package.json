@@ -23,12 +23,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/egypt-prayer-times.git"
+    "url": "https://github.com/AhmedGamal172000/egypt-prayer-times.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/egypt-prayer-times/issues"
+    "url": "https://github.com/AhmedGamal172000/egypt-prayer-times/issues"
   },
-  "homepage": "https://github.com/yourusername/egypt-prayer-times#readme",
+  "homepage": "https://github.com/AhmedGamal172000/egypt-prayer-times#readme",
   "devDependencies": {
     "@babel/core": "^7.29.7",
     "@babel/preset-env": "^7.29.7",

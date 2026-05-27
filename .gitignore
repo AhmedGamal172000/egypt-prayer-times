@@ -25,3 +25,8 @@ Thumbs.db
 
 # Tests coverage
 coverage/
+
+# Tools downloaded during setup
+tools/
+gh.zip
+bin/gh.exe

@@ -1,8 +1,8 @@
 # Egypt Prayer Times
 
-![Build Status](https://github.com/yourusername/egypt-prayer-times/actions/workflows/build.yml/badge.svg)
-![Version](https://img.shields.io/github/v/release/yourusername/egypt-prayer-times)
-![License](https://img.shields.io/github/license/yourusername/egypt-prayer-times)
+![Build Status](https://github.com/AhmedGamal172000/egypt-prayer-times/actions/workflows/build.yml/badge.svg)
+![Version](https://img.shields.io/github/v/release/AhmedGamal172000/egypt-prayer-times)
+![License](https://img.shields.io/github/license/AhmedGamal172000/egypt-prayer-times)
 
 A production-ready, open-source Chrome extension for accurate Muslim prayer times in Egypt. Features live API data from [Aladhan.com](https://aladhan.com), robust offline fallback using the Adhan JS library, and a clean, responsive UI with RTL Arabic support.
 
@@ -31,7 +31,7 @@ A production-ready, open-source Chrome extension for accurate Muslim prayer time
 ### Developer: Load Unpacked
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/egypt-prayer-times.git
+   git clone https://github.com/AhmedGamal172000/egypt-prayer-times.git
    cd egypt-prayer-times
    ```
 2. Install dependencies and build:
