@@ -25,69 +25,46 @@ A production-ready, open-source Chrome extension for accurate Muslim prayer time
 
 ## Install
 
-### From Chrome Web Store
-> Coming soon — placeholder for Web Store link
+### Option 1: Developer Mode (Easiest — Run Locally)
 
-### Developer Mode: Load Unpacked (Step-by-Step)
+This is the fastest way to use the extension right now. No Chrome Web Store needed.
 
-You can run this extension locally without installing from the Chrome Web Store. Follow these steps carefully:
+#### Quick Setup (Windows)
 
-#### Step 1: Download or Clone the Code
+1. Download the [latest source code ZIP](https://github.com/AhmedGamal172000/egypt-prayer-times/releases/latest) and extract it
+2. Make sure you have [Node.js](https://nodejs.org/) installed
+3. Double-click **`setup.bat`** in the extracted folder
+4. The script will install dependencies, build the extension, and open the required folders
 
-**Option A — Clone with Git:**
-```bash
-git clone https://github.com/AhmedGamal172000/egypt-prayer-times.git
-cd egypt-prayer-times
-```
+#### Manual Setup (Any OS)
 
-**Option B — Download ZIP:**
-1. Go to the [latest release](https://github.com/AhmedGamal172000/egypt-prayer-times/releases/latest)
-2. Download `Source code (zip)` and extract it
-3. Open the extracted folder in your terminal
+1. Download or clone the code:
+   ```bash
+   git clone https://github.com/AhmedGamal172000/egypt-prayer-times.git
+   cd egypt-prayer-times
+   ```
 
-#### Step 2: Build the Extension
+2. Build the extension:
+   ```bash
+   npm install
+   npm run build
+   ```
 
-You need [Node.js](https://nodejs.org/) installed (version 18 or higher).
+3. Load it in Chrome:
+   - Open **Chrome** → type `chrome://extensions/` → press **Enter**
+   - Turn **ON** the **Developer mode** switch (top-right corner)
+   - Click **Load unpacked**
+   - Select the **`dist/`** folder from this project
+   - Done! The extension icon will appear in your toolbar
 
-```bash
-# Install dependencies
-npm install
+4. Pin the extension (optional):
+   - Click the **puzzle piece** 🧩 in the Chrome toolbar
+   - Find **"Egypt Prayer Times"** and click the **pin** 📌
 
-# Build the extension (creates the dist/ folder)
-npm run build
-```
+---
 
-After running these commands, you will see a new `dist/` folder in the project directory. This folder contains the compiled extension ready for Chrome.
-
-#### Step 3: Open Chrome Extensions Page
-
-1. Open **Google Chrome**
-2. Type `chrome://extensions/` in the address bar and press **Enter**
-3. Look at the top-right corner of the page
-
-#### Step 4: Enable Developer Mode
-
-1. Toggle the **Developer mode** switch to the **ON** position (top-right corner)
-   - You will see three new buttons appear: **Load unpacked**, **Pack extension**, and **Update**
-
-#### Step 5: Load the Extension
-
-1. Click the **Load unpacked** button
-2. A file picker dialog will open
-3. Navigate to the project folder and select the **`dist/`** folder
-4. Click **Select Folder** (Windows) or **Open** (Mac)
-
-#### Step 6: Verify Installation
-
-- You should see **"Egypt Prayer Times"** appear in your extensions list
-- The extension icon will appear in your Chrome toolbar (top-right, next to the address bar)
-- Click the icon to open the prayer times popup
-
-#### Step 7: Pin the Extension (Optional)
-
-1. Click the **puzzle piece icon** 🧩 in the Chrome toolbar
-2. Find **"Egypt Prayer Times"**
-3. Click the **pin icon** 📌 next to it so it stays visible in the toolbar
+### Option 2: Chrome Web Store
+> Coming soon — link will be added here once approved
 
 ---
 
@@ -96,8 +73,9 @@ After running these commands, you will see a new `dist/` folder in the project d
 | Problem | Solution |
 |---------|----------|
 | "Manifest file is missing or unreadable" | Make sure you selected the **`dist/`** folder, not the project root or `src/` |
+| `setup.bat` says Node.js not found | Install [Node.js](https://nodejs.org/) first, then run `setup.bat` again |
 | Build fails with "module not found" | Run `npm install` again, then `npm run build` |
-| Extension shows "Errors" button | Click **"Errors"** in `chrome://extensions/` to see details. Usually fixed by rebuilding: `npm run build` |
+| Extension shows "Errors" button | Click **"Errors"** in `chrome://extensions/` to see details. Rebuild: `npm run build` |
 | Prayer times not loading | Check your internet connection. The extension will fall back to calculated times if offline |
 | Arabic text looks wrong | Make sure your Chrome supports Arabic fonts. Try switching language in the extension settings |
 
