@@ -67,6 +67,7 @@ export class PrayerEngine {
           date: today.date,
           hijri: today.hijri,
           times: this._parseTimesToDates(today.times),
+          timeStrings: today.times,
           source: DATA_SOURCE.LIVE
         };
         this.source = DATA_SOURCE.LIVE;
@@ -81,6 +82,7 @@ export class PrayerEngine {
           date: daily.date,
           hijri: daily.hijri,
           times: this._parseTimesToDates(daily.times),
+          timeStrings: daily.times,
           source: DATA_SOURCE.LIVE
         };
         this.source = DATA_SOURCE.LIVE;
@@ -122,8 +124,12 @@ export class PrayerEngine {
   async getNextPrayer() {
     const data = await this.getToday();
     const now = new Date();
+
+    // Re-parse times with today's date to handle background running past midnight
+    const freshTimes = this._freshTimesFromStrings(data.timeStrings || data.times);
+
     for (const name of PRAYER_NAMES) {
-      const t = data.times[name];
+      const t = freshTimes[name];
       if (t && t > now) {
         return { name, time: t };
       }
@@ -214,6 +220,19 @@ export class PrayerEngine {
     const result = {};
     for (const [name, timeStr] of Object.entries(times)) {
       if (!timeStr) {continue;}
+      const [h, min] = timeStr.split(':').map(Number);
+      result[name] = new Date(y, m, d, h, min, 0);
+    }
+    return result;
+  }
+
+  _freshTimesFromStrings(timeStrings) {
+    if (!timeStrings) {return {};}
+    const now = new Date();
+    const [y, m, d] = [now.getFullYear(), now.getMonth(), now.getDate()];
+    const result = {};
+    for (const [name, timeStr] of Object.entries(timeStrings)) {
+      if (!timeStr || typeof timeStr !== 'string') {continue;}
       const [h, min] = timeStr.split(':').map(Number);
       result[name] = new Date(y, m, d, h, min, 0);
     }

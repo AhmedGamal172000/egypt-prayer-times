@@ -15,6 +15,8 @@ async function initBackground() {
   await prayerEngine.init();
   await refreshPrayerTimes();
   setupAlarms();
+  await updateBadge();
+  await scheduleNotifications();
 }
 
 /**

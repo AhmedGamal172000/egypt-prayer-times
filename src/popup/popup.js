@@ -16,12 +16,16 @@ async function init() {
 }
 
 async function refreshAndRender() {
+  // Render cached data immediately so popup isn't blank
+  await render();
+  // Then refresh from API in background
   try {
     await chrome.runtime.sendMessage({ type: 'REFRESH_TIMES' });
+    // Re-render with fresh data
+    await render();
   } catch (e) {
     console.error('[Popup] refresh failed', e);
   }
-  await render();
 }
 
 async function getSettings() {
