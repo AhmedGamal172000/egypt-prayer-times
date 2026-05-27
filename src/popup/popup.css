@@ -1,0 +1,190 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #1f2937;
+  --text-secondary: #6b7280;
+  --accent: #0d6efd;
+  --accent-light: #e7f1ff;
+  --border: #e5e7eb;
+  --success: #16a34a;
+  --warning: #eab308;
+  --danger: #dc2626;
+  --radius: 14px;
+  --shadow: 0 6px 24px rgba(0,0,0,0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --text: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6;
+    --accent-light: #1e3a5f;
+    --border: #334155;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 380px;
+  min-height: 480px;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body { padding: 12px; }
+
+.app {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.header {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  display: inline-flex;
+}
+.icon-btn:hover { background: var(--accent-light); color: var(--accent); }
+
+.current-time {
+  font-size: 32px;
+  font-weight: 800;
+  margin-top: 8px;
+  letter-spacing: 0.5px;
+}
+
+.current-date {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.next-prayer {
+  padding: 18px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-light), transparent);
+  border-bottom: 1px solid var(--border);
+}
+
+.next-prayer-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.next-prayer-name {
+  font-size: 26px;
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.next-prayer-countdown {
+  font-size: 28px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.next-prayer-time {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.expand-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.expand-btn:hover { opacity: 0.92; }
+
+.prayer-list {
+  padding: 10px;
+}
+
+.prayer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  transition: background 0.15s ease;
+}
+.prayer-row:hover { background: var(--accent-light); }
+.prayer-row.current { background: var(--accent-light); outline: 1px solid var(--accent); }
+.prayer-row.passed { opacity: 0.6; }
+
+.prayer-info { display: flex; align-items: center; gap: 10px; }
+.prayer-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  color: var(--accent);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.prayer-names { display: flex; flex-direction: column; }
+.prayer-name-en { font-size: 14px; font-weight: 600; }
+.prayer-name-ar { font-size: 11px; color: var(--text-secondary); }
+.prayer-time { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.footer {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+}
+.status-row { display: flex; align-items: center; gap: 8px; }
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--danger);
+}
+.status-dot.live { background: var(--success); }
+.status-dot.cached { background: var(--warning); }
+.status-text {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* RTL support */
+[dir="rtl"] .prayer-info { flex-direction: row-reverse; }
+[dir="rtl"] .header-top { flex-direction: row-reverse; }

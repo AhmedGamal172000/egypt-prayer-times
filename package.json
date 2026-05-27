@@ -1,0 +1,50 @@
+{
+  "name": "egypt-prayer-times",
+  "version": "1.0.0",
+  "description": "Production-ready Chrome extension for Muslim prayer times in Egypt with live API and offline fallback",
+  "main": "src/background/background.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --mode=production",
+    "build:dev": "webpack --mode=development",
+    "watch": "webpack --mode=development --watch",
+    "lint": "eslint src/",
+    "test": "jest",
+    "release": "npm run lint && npm run test && npm run build && node scripts/release.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "prayer-times",
+    "islam",
+    "egypt",
+    "adhan",
+    "manifest-v3"
+  ],
+  "author": "Egypt Prayer Times Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/egypt-prayer-times.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/egypt-prayer-times/issues"
+  },
+  "homepage": "https://github.com/yourusername/egypt-prayer-times#readme",
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "babel-jest": "^30.4.1",
+    "copy-webpack-plugin": "^11.0.0",
+    "cross-env": "^10.1.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.50.0",
+    "html-webpack-plugin": "^5.5.3",
+    "jest": "^29.7.0",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4",
+    "zip-webpack-plugin": "^4.0.1"
+  },
+  "dependencies": {
+    "adhan": "^4.4.3"
+  }
+}
