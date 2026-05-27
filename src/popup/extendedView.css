@@ -55,3 +55,21 @@ html, body {
   font-size: clamp(11px, 2vw, 14px);
   color: var(--muted);
 }
+
+.extended-attribution {
+  font-size: clamp(9px, 1.5vw, 11px);
+  color: var(--muted);
+  text-align: center;
+  opacity: 0.7;
+  margin-top: clamp(4px, 1vh, 10px);
+}
+
+.extended-attribution a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.extended-attribution a:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
