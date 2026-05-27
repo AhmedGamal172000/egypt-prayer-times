@@ -84,7 +84,7 @@ export class AladhanProvider extends BasePrayerProvider {
       if (!response.ok) {throw new Error(`HTTP ${response.status}`);}
       const json = await response.json();
       if (json.code !== 200) {throw new Error(`API error: ${json.status || json.code}`);}
-      return json.data || json;
+      return json;
     } catch (err) {
       clearTimeout(id);
       throw err;
