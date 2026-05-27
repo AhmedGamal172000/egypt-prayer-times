@@ -1,9 +1,13 @@
 @echo off
 chcp 65001 >nul
-title Egypt Prayer Times - Setup
+title Egypt Prayer Times - Developer Build
 echo ============================================
-echo   Egypt Prayer Times - Extension Setup
+echo   Egypt Prayer Times - Developer Build
 echo ============================================
+echo.
+echo NOTE: This script is for developers who want to
+echo modify the source code. Regular users can simply
+echo load the pre-built dist/ folder in Chrome.
 echo.
 
 :: Check for Node.js
@@ -14,8 +18,6 @@ if errorlevel 1 (
     echo Please download and install Node.js first:
     echo https://nodejs.org/
     echo.
-    echo Then run this file again.
-    echo.
     pause
     exit /b 1
 )
@@ -25,7 +27,7 @@ node --version
 echo.
 
 :: Install dependencies
-echo 📦 Installing dependencies...
+echo 📦 Installing dependencies (this may take a minute)...
 call npm install
 if errorlevel 1 (
     echo ❌ Failed to install dependencies.
@@ -48,28 +50,17 @@ echo.
 
 :: Show success
 echo ============================================
-echo   ✅ Setup Complete!
+echo   ✅ Build Complete!
 echo ============================================
 echo.
-echo Next steps to load the extension in Chrome:
-echo.
-echo 1. Open Chrome
-echo 2. Type chrome://extensions/ in the address bar
-echo 3. Turn ON ^"Developer mode^" (top-right switch)
-echo 4. Click ^"Load unpacked^"
-echo 5. Select this folder: 
-echo    %CD%\dist
-echo.
-echo ============================================
+echo The dist/ folder has been updated.
+echo Load it in Chrome at chrome://extensions/
+echo (Developer mode ON ^> Load unpacked ^> select dist/)
 echo.
 
 :: Open dist folder
 echo 📂 Opening the dist folder...
 start explorer "%CD%\dist"
-
-:: Optionally open Chrome extensions page
-echo 🌐 Opening Chrome extensions page...
-start chrome "chrome://extensions/"
 
 echo.
 pause

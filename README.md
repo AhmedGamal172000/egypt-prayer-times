@@ -25,41 +25,35 @@ A production-ready, open-source Chrome extension for accurate Muslim prayer time
 
 ## Install
 
-### Option 1: Developer Mode (Easiest — Run Locally)
+### Option 1: Load Unpacked (No Build Required — Easiest)
 
-This is the fastest way to use the extension right now. No Chrome Web Store needed.
+The extension is already built and ready to use. You **do not** need Node.js, npm, or any dependencies.
 
-#### Quick Setup (Windows)
+#### Step 1: Get the Code
 
-1. Download the [latest source code ZIP](https://github.com/AhmedGamal172000/egypt-prayer-times/releases/latest) and extract it
-2. Make sure you have [Node.js](https://nodejs.org/) installed
-3. Double-click **`setup.bat`** in the extracted folder
-4. The script will install dependencies, build the extension, and open the required folders
+**Option A — Download ZIP (Recommended):**
+1. Click the green **<> Code** button at the top of this page
+2. Click **Download ZIP**
+3. Extract the ZIP file anywhere on your computer
 
-#### Manual Setup (Any OS)
+**Option B — Clone with Git:**
+```bash
+git clone https://github.com/AhmedGamal172000/egypt-prayer-times.git
+```
 
-1. Download or clone the code:
-   ```bash
-   git clone https://github.com/AhmedGamal172000/egypt-prayer-times.git
-   cd egypt-prayer-times
-   ```
+#### Step 2: Load in Chrome
 
-2. Build the extension:
-   ```bash
-   npm install
-   npm run build
-   ```
+1. Open **Google Chrome**
+2. Type `chrome://extensions/` in the address bar and press **Enter**
+3. Turn **ON** the **Developer mode** switch (top-right corner)
+4. Click **Load unpacked**
+5. Select the **`dist/`** folder inside the extracted project
+6. Done! The extension icon will appear in your toolbar
 
-3. Load it in Chrome:
-   - Open **Chrome** → type `chrome://extensions/` → press **Enter**
-   - Turn **ON** the **Developer mode** switch (top-right corner)
-   - Click **Load unpacked**
-   - Select the **`dist/`** folder from this project
-   - Done! The extension icon will appear in your toolbar
+#### Step 3: Pin the Extension (Optional)
 
-4. Pin the extension (optional):
-   - Click the **puzzle piece** 🧩 in the Chrome toolbar
-   - Find **"Egypt Prayer Times"** and click the **pin** 📌
+- Click the **puzzle piece** 🧩 in the Chrome toolbar
+- Find **"Egypt Prayer Times"** and click the **pin** 📌
 
 ---
 
@@ -68,14 +62,28 @@ This is the fastest way to use the extension right now. No Chrome Web Store need
 
 ---
 
+### Option 3: Build from Source (For Developers)
+
+Only needed if you want to modify the code.
+
+1. Install [Node.js](https://nodejs.org/) (version 18+)
+2. Run in the project folder:
+   ```bash
+   npm install
+   npm run build
+   ```
+3. The `dist/` folder will be updated with your changes. Load it in Chrome as shown in Option 1.
+
+**Windows users:** You can also double-click **`setup.bat`** to run the commands automatically.
+
+---
+
 ### Troubleshooting
 
 | Problem | Solution |
 |---------|----------|
 | "Manifest file is missing or unreadable" | Make sure you selected the **`dist/`** folder, not the project root or `src/` |
-| `setup.bat` says Node.js not found | Install [Node.js](https://nodejs.org/) first, then run `setup.bat` again |
-| Build fails with "module not found" | Run `npm install` again, then `npm run build` |
-| Extension shows "Errors" button | Click **"Errors"** in `chrome://extensions/` to see details. Rebuild: `npm run build` |
+| Extension shows "Errors" button | Click **"Errors"** in `chrome://extensions/` to see details. Rebuild with `npm run build` |
 | Prayer times not loading | Check your internet connection. The extension will fall back to calculated times if offline |
 | Arabic text looks wrong | Make sure your Chrome supports Arabic fonts. Try switching language in the extension settings |
 
