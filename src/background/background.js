@@ -104,6 +104,7 @@ async function scheduleNotifications() {
   try {
     notificationManager.cancelAll();
     const data = await prayerEngine.getToday();
+    if (!data || !data.times) {return;}
     const now = new Date();
     for (const name of PRAYER_NAMES) {
       const time = data.times[name];

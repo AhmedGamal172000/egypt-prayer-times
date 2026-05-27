@@ -109,6 +109,9 @@ export class PrayerEngine {
     if (!this.currentData) {
       await this._loadFromCache();
     }
+    if (!this.currentData) {
+      return { times: {}, source: DATA_SOURCE.CACHED };
+    }
     return { ...this.currentData, source: this.source };
   }
 
