@@ -79,11 +79,8 @@ async function saveSettings() {
   try {
     await chrome.runtime.sendMessage({ type: 'SAVE_SETTINGS', payload: newSettings });
     showToast('Saved');
-    // Re-apply direction in case language changed
-    currentSettings = newSettings;
-    applyLanguageDirection();
-    populateCities();
-    bindValues();
+    // Reload page so new language/theme takes effect immediately
+    window.location.reload();
   } catch (e) {
     showToast('Error saving settings');
     console.error(e);
