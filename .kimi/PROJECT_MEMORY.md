@@ -130,6 +130,7 @@ src/
 |---------|--------|
 | 40 countries, ~300 cities | ✅ |
 | Country + City dropdown selection | ✅ |
+| Location display in popup (city, country) | ✅ |
 | Live Aladhan API data | ✅ |
 | Offline cache fallback | ✅ |
 | Prayer countdown timer | ✅ |
@@ -297,6 +298,8 @@ git push origin v1.1.0
 
 | Commit | Date | What Changed |
 |--------|------|-------------|
+| `06eddfa` | 2026-05-29 | Added chrome load-unpacked screenshot to README Step 2 |
+| `6dd549d` | 2026-05-29 | Show selected city and country in popup header (localized) |
 | `TBD` | 2026-05-29 | Generalized for global use: 40 countries, ~300 cities, renamed to "Prayer Times" |
 | `d52e04f` | 2026-05-29 | Added Chrome Web Store auto-publish workflow + PUBLISHING.md |
 | `286bde0` | 2026-05-29 | Removed theme selection from options |
