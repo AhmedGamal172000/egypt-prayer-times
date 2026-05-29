@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="extended-container">
-    <div class="extended-label" id="label">Next Prayer</div>
+    <div class="extended-label" id="label" data-i18n="NextPrayer">Next Prayer</div>
     <div class="extended-name" id="prayer-name">--</div>
     <div class="extended-countdown" id="countdown">00:00:00</div>
     <div class="extended-time" id="prayer-time">--:--</div>
@@ -17,5 +17,14 @@
       <a href="https://www.linkedin.com/in/ahmed-mohamed-gamal-007aa4192/" target="_blank">LinkedIn</a>
     </div>
   </div>
+  <script>
+    if (typeof chrome !== 'undefined' && chrome.i18n && chrome.i18n.getMessage) {
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        var translated = chrome.i18n.getMessage(key);
+        if (translated) { el.textContent = translated; }
+      });
+    }
+  </script>
 </body>
 </html>

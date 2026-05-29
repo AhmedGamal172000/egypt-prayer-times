@@ -1,5 +1,6 @@
 import './options.css';
 import { EGYPTIAN_CITIES, DEFAULT_SETTINGS } from '../shared/config.js';
+import { translatePage } from '../shared/utils.js';
 
 let currentSettings = { ...DEFAULT_SETTINGS };
 
@@ -9,6 +10,7 @@ async function init() {
   bindValues();
   setupListeners();
   applyLanguageDirection();
+  translatePage();
 }
 
 async function loadSettings() {
@@ -40,7 +42,6 @@ function bindValues() {
   document.getElementById('lat').value = s.customLat ?? '';
   document.getElementById('lng').value = s.customLng ?? '';
   document.getElementById('method').value = String(s.method);
-  document.getElementById('madhab').value = s.madhab;
   document.getElementById('time-format').value = s.timeFormat;
   document.getElementById('language').value = s.language;
   document.getElementById('theme').value = s.theme;
@@ -69,7 +70,6 @@ async function saveSettings() {
     customLat: parseFloat(document.getElementById('lat').value) || null,
     customLng: parseFloat(document.getElementById('lng').value) || null,
     method: parseInt(document.getElementById('method').value, 10),
-    madhab: document.getElementById('madhab').value,
     timeFormat: document.getElementById('time-format').value,
     language: document.getElementById('language').value,
     theme: document.getElementById('theme').value,

@@ -34,6 +34,20 @@
   "Live": { "message": "مباشر" },
   "Cached": { "message": "مخزن" },
   "Calculated": { "message": "محسوب" },
+  "MethodEgyptian": { "message": "الهيئة المصرية العامة للمساحة" },
+  "MethodMWL": { "message": "رابطة العالم الإسلامي" },
+  "MethodISNA": { "message": "الجمعية الإسلامية لأمريكا الشمالية" },
+  "MethodMakkah": { "message": "جامعة أم القرى، مكة" },
+  "NotificationMessage": {
+    "message": "حان وقت صلاة $PRAYER$",
+    "description": "رسالة الإشعار عند دخول وقت الصلاة",
+    "placeholders": {
+      "prayer": {
+        "content": "$1",
+        "example": "الظهر"
+      }
+    }
+  },
   "Offline": { "message": "بدون إنترنت" },
   "Expand": { "message": "توسيع" },
   "Save": { "message": "حفظ" },

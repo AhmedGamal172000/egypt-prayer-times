@@ -61,7 +61,9 @@ export class NotificationManager extends BaseNotification {
    */
   async showNotification(prayerName) {
     const title = chrome.i18n.getMessage('extName') || 'Egypt Prayer Times';
-    const message = `It's time for ${prayerName} prayer`;
+    const prayerLocalized = chrome.i18n.getMessage(prayerName) || prayerName;
+    const message = chrome.i18n.getMessage('NotificationMessage', [prayerLocalized])
+      || `It's time for ${prayerLocalized} prayer`;
     await chrome.notifications.create(`prayer-alert-${prayerName}-${Date.now()}`, {
       type: 'basic',
       iconUrl: 'assets/icons/icon128.png',

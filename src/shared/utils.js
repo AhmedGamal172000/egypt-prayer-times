@@ -134,3 +134,19 @@ export function deepMerge(target, source) {
 export function isOnline() {
   return navigator.onLine;
 }
+
+/**
+ * Translate all elements with data-i18n attribute using chrome.i18n.getMessage.
+ * Safe to call even when chrome.i18n is unavailable (e.g., tests).
+ */
+export function translatePage() {
+  if (typeof chrome === 'undefined' || !chrome.i18n || !chrome.i18n.getMessage) {return;}
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (!key) {return;}
+    const translated = chrome.i18n.getMessage(key);
+    if (translated) {
+      el.textContent = translated;
+    }
+  });
+}

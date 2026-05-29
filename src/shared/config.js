@@ -25,12 +25,6 @@ export const CALCULATION_METHODS = {
 /** Default calculation method */
 export const DEFAULT_METHOD = CALCULATION_METHODS.EGYPTIAN_GENERAL_AUTHORITY.id;
 
-/** Madhab (school) settings for Asr calculation */
-export const MADHAB = {
-  SHAFI: 'Shafi',
-  HANAFI: 'Hanafi'
-};
-
 /** Time format preferences */
 export const TIME_FORMAT = {
   H12: '12h',
@@ -93,7 +87,6 @@ export const EGYPTIAN_CITIES = [
 export const DEFAULT_SETTINGS = {
   city: EGYPTIAN_CITIES[0], // Cairo
   method: DEFAULT_METHOD,
-  madhab: MADHAB.SHAFI,
   timeFormat: TIME_FORMAT.H12,
   language: LANGUAGE.EN,
   theme: THEME.SYSTEM,

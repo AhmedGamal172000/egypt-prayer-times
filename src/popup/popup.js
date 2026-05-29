@@ -1,6 +1,6 @@
 import './popup.css';
 import { PRAYER_NAMES, DATA_SOURCE, DEFAULT_SETTINGS } from '../shared/config.js';
-import { formatTime, formatGregorianDate, formatHijriFromAPI, getTimeRemaining, formatCountdown } from '../shared/utils.js';
+import { formatTime, formatGregorianDate, formatHijriFromAPI, getTimeRemaining, formatCountdown, translatePage } from '../shared/utils.js';
 
 let settings = { ...DEFAULT_SETTINGS };
 let clockInterval = null;
@@ -9,6 +9,7 @@ let countdownInterval = null;
 async function init() {
   settings = await getSettings();
   applyLanguageDirection();
+  translatePage();
   await refreshAndRender();
   startClock();
   startCountdown();

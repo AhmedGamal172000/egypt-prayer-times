@@ -34,6 +34,20 @@
   "Live": { "message": "Live" },
   "Cached": { "message": "Cached" },
   "Calculated": { "message": "Calculated" },
+  "MethodEgyptian": { "message": "Egyptian General Authority of Survey" },
+  "MethodMWL": { "message": "Muslim World League" },
+  "MethodISNA": { "message": "Islamic Society of North America" },
+  "MethodMakkah": { "message": "Umm Al-Qura University, Makkah" },
+  "NotificationMessage": {
+    "message": "It's time for $PRAYER$ prayer",
+    "description": "Desktop notification message when a prayer time arrives",
+    "placeholders": {
+      "prayer": {
+        "content": "$1",
+        "example": "Dhuhr"
+      }
+    }
+  },
   "Offline": { "message": "Offline" },
   "Expand": { "message": "Expand" },
   "Save": { "message": "Save" },
