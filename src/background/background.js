@@ -147,6 +147,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       } else if (message.type === 'SAVE_SETTINGS') {
         await store.set('settings', { ...DEFAULT_SETTINGS, ...message.payload });
         await prayerEngine.refresh();
+        await updateBadge();
+        await scheduleNotifications();
         sendResponse({ success: true });
       } else {
         sendResponse({ success: false, error: 'Unknown message type' });
