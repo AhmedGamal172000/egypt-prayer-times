@@ -5,8 +5,8 @@
 
 const TRANSLATIONS = {
   en: {
-    extName: 'Egypt Prayer Times',
-    extDescription: 'Accurate Muslim prayer times for Egypt with live API and offline fallback.',
+    extName: 'Prayer Times',
+    extDescription: 'Accurate Muslim prayer times for any city worldwide with live API and offline fallback.',
     Fajr: 'Fajr',
     Sunrise: 'Sunrise',
     Dhuhr: 'Dhuhr',
@@ -16,6 +16,7 @@ const TRANSLATIONS = {
     NextPrayer: 'Next Prayer',
     TimeRemaining: 'Time Remaining',
     Settings: 'Settings',
+    Country: 'Country',
     City: 'City',
     CalculationMethod: 'Calculation Method',
     Madhab: 'Madhab',
@@ -45,8 +46,8 @@ const TRANSLATIONS = {
     Provider: 'Provider'
   },
   ar: {
-    extName: 'مواقيت الصلاة في مصر',
-    extDescription: 'مواقيت صلاة دقيقة للمسلمين في مصر مع دعم الاتصال المباشر والعمل بدون إنترنت.',
+    extName: 'مواقيت الصلاة',
+    extDescription: 'مواقيت صلاة دقيقة للمسلمين في أي مدينة مع دعم الاتصال المباشر والعمل بدون إنترنت.',
     Fajr: 'الفجر',
     Sunrise: 'الشروق',
     Dhuhr: 'الظهر',
@@ -56,6 +57,7 @@ const TRANSLATIONS = {
     NextPrayer: 'الصلاة القادمة',
     TimeRemaining: 'الوقت المتبقي',
     Settings: 'الإعدادات',
+    Country: 'الدولة',
     City: 'المدينة',
     CalculationMethod: 'طريقة الحساب',
     Madhab: 'المذهب',

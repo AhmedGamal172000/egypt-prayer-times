@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "مواقيت الصلاة في مصر",
+    "message": "مواقيت الصلاة",
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "مواقيت صلاة دقيقة للمسلمين في مصر مع دعم الاتصال المباشر والعمل بدون إنترنت.",
+    "message": "مواقيت صلاة دقيقة للمسلمين في أي مدينة مع دعم الاتصال المباشر والعمل بدون إنترنت.",
     "description": "Extension description"
   },
   "Fajr": { "message": "الفجر" },
@@ -16,6 +16,7 @@
   "NextPrayer": { "message": "الصلاة القادمة" },
   "TimeRemaining": { "message": "الوقت المتبقي" },
   "Settings": { "message": "الإعدادات" },
+  "Country": { "message": "الدولة" },
   "City": { "message": "المدينة" },
   "CalculationMethod": { "message": "طريقة الحساب" },
   "Madhab": { "message": "المذهب" },

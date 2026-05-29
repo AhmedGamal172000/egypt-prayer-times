@@ -1,5 +1,5 @@
 import { AladhanProvider } from '../../src/shared/api/AladhanProvider.js';
-import { EGYPTIAN_CITIES } from '../../src/shared/config.js';
+import { COUNTRIES } from '../../src/shared/config.js';
 
 /**
  * LIVE API Integration Tests
@@ -128,11 +128,19 @@ describeLive('LIVE API — Aladhan.com Integration', () => {
     }, 15000);
   });
 
-  describe('All Egyptian cities sanity check', () => {
-    test.each(EGYPTIAN_CITIES.map(c => c.name))(
-      '%s monthly fetch succeeds',
-      async (cityName) => {
-        const monthly = await provider.fetchMonthly(cityName, 'Egypt', 5, { school: 0 });
+  describe('Multi-country cities sanity check', () => {
+    // Test first 2 cities from first 5 countries to keep test runtime reasonable
+    const testCities = [];
+    for (const country of COUNTRIES.slice(0, 5)) {
+      for (const city of country.cities.slice(0, 2)) {
+        testCities.push({ cityName: city.name, countryName: country.name });
+      }
+    }
+
+    test.each(testCities)(
+      '$cityName, $countryName monthly fetch succeeds',
+      async ({ cityName, countryName }) => {
+        const monthly = await provider.fetchMonthly(cityName, countryName, 5, { school: 0 });
         expect(monthly.length).toBeGreaterThanOrEqual(28);
         verifyPrayerOrder(monthly[0]);
       },

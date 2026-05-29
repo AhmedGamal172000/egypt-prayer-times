@@ -7,9 +7,9 @@
 
 ## 1. Project Overview
 
-**Name:** Egypt Prayer Times  
+**Name:** Prayer Times  
 **Type:** Chrome Extension (Manifest V3)  
-**Purpose:** Accurate Muslim prayer times for all Egyptian cities using live Aladhan.com API data  
+**Purpose:** Accurate Muslim prayer times for any city worldwide using live Aladhan.com API data  
 **Author:** Ahmed Mohamed Gamal  
 **Email:** ahmedgamal172000@gmail.com  
 **LinkedIn:** https://www.linkedin.com/in/ahmed-mohamed-gamal-007aa4192/  
@@ -59,28 +59,28 @@ src/
     background.js          # Service worker entry (alarms, badge, notifications, messaging)
     NotificationManager.js # Desktop notification scheduling via chrome.alarms + chrome.notifications
   popup/
-    popup.js               # Popup UI logic (clock, countdown, prayer list, status)
+    popup.js               # Popup UI logic (clock, countdown, prayer list, status, country display)
     popup.html             # Popup markup
     popup.css              # Popup styles
     extendedView.js        # Extended window logic (larger countdown display)
     extendedView.html      # Extended window markup
     extendedView.css       # Extended window styles
   options/
-    options.js             # Settings page logic
+    options.js             # Settings page logic (country + city dropdowns)
     options.html           # Settings page markup
     options.css            # Settings page styles
   shared/
     api/
-      AladhanProvider.js   # Fetches from Aladhan API (monthly/daily)
+      AladhanProvider.js   # Fetches from Aladhan API (monthly/daily) for any city/country
       BasePrayerProvider.js # Abstract base
     locales/
       en/messages.json     # Chrome i18n EN strings
       ar/messages.json     # Chrome i18n AR strings
     translations.js        # Runtime translation map (EN+AR) for data-i18n elements
     utils.js               # formatTime, formatHijriFromAPI, getTimeRemaining, formatCountdown, translatePage
-    config.js              # Constants: cities, methods, DEFAULT_SETTINGS, PRAYER_NAMES, ALARMS
+    config.js              # COUNTRIES array (40 countries, ~300 cities), DEFAULT_SETTINGS, PRAYER_NAMES, ALARMS
     store.js               # Observable wrapper around chrome.storage.local
-    prayerEngine.js        # Core engine: refresh, getToday, getNextPrayer, cache management
+    prayerEngine.js        # Core engine: refresh, getToday, getNextPrayer, cache management (uses city+country)
     base/                  # Abstract base classes
   assets/
     icons/                 # icon16.png, icon32.png, icon48.png, icon128.png (blue crescent+star)
@@ -91,10 +91,17 @@ src/
 
 ## 4. Key Design Decisions (CRITICAL)
 
+### Global City/Country Support
+- **40 countries** with ~300 cities hardcoded in `config.js` `COUNTRIES` array
+- Each country has `name`, `nameAr`, and `cities[]` with `name` and `nameAr`
+- Default: **Cairo, Egypt**
+- Settings store `city` and `country` as strings (not objects)
+- Prayer engine passes both to Aladhan API — works for any city in any country
+
 ### API-Only (No Local Calculation)
 - **Removed** the `adhan` npm package and all local calculation
 - Extension only uses **live API data** (green dot = LIVE) or **cache** (yellow dot = CACHED)
-- **Why:** Egypt's DST shifts are handled correctly by Aladhan's `Africa/Cairo` timezone. Local JS libraries often fail on Egypt's government DST changes.
+- **Why:** Aladhan handles DST and timezones correctly per country. Local JS libraries often fail on government DST changes.
 - **Trade-off:** Requires internet. Offline = cached data only.
 
 ### Date Handling (Midnight Bug Fix)
@@ -121,7 +128,8 @@ src/
 
 | Feature | Status |
 |---------|--------|
-| 28 Egyptian cities | ✅ |
+| 40 countries, ~300 cities | ✅ |
+| Country + City dropdown selection | ✅ |
 | Live Aladhan API data | ✅ |
 | Offline cache fallback | ✅ |
 | Prayer countdown timer | ✅ |
@@ -289,6 +297,7 @@ git push origin v1.1.0
 
 | Commit | Date | What Changed |
 |--------|------|-------------|
+| `TBD` | 2026-05-29 | Generalized for global use: 40 countries, ~300 cities, renamed to "Prayer Times" |
 | `d52e04f` | 2026-05-29 | Added Chrome Web Store auto-publish workflow + PUBLISHING.md |
 | `286bde0` | 2026-05-29 | Removed theme selection from options |
 | `fe018be` | 2026-05-29 | Removed custom coordinates feature |

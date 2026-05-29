@@ -1,5 +1,5 @@
 /**
- * Central configuration for the Egypt Prayer Times extension.
+ * Central configuration for the Prayer Times extension.
  * All configurable values live here — never hardcoded elsewhere.
  */
 
@@ -44,46 +44,442 @@ export const DATA_SOURCE = {
   CALCULATED: 'calculated'
 };
 
-/** Egyptian cities with coordinates */
-export const EGYPTIAN_CITIES = [
-  { name: 'Cairo', nameAr: 'القاهرة', lat: 30.0444, lng: 31.2357 },
-  { name: 'Alexandria', nameAr: 'الإسكندرية', lat: 31.2001, lng: 29.9187 },
-  { name: 'Giza', nameAr: 'الجيزة', lat: 30.0131, lng: 31.2089 },
-  { name: 'Shubra El-Kheima', nameAr: 'شبرا الخيمة', lat: 30.1286, lng: 31.2422 },
-  { name: 'Port Said', nameAr: 'بورسعيد', lat: 31.2653, lng: 32.3019 },
-  { name: 'Suez', nameAr: 'السويس', lat: 29.9668, lng: 32.5498 },
-  { name: 'Luxor', nameAr: 'الأقصر', lat: 25.6872, lng: 32.6396 },
-  { name: 'Al-Mansura', nameAr: 'المنصورة', lat: 31.0409, lng: 31.3785 },
-  { name: 'El-Mahalla El-Kubra', nameAr: 'المحلة الكبرى', lat: 30.9706, lng: 31.1668 },
-  { name: 'Tanta', nameAr: 'طنطا', lat: 30.7865, lng: 31.0004 },
-  { name: 'Asyut', nameAr: 'أسيوط', lat: 27.1783, lng: 31.1859 },
-  { name: 'Ismailia', nameAr: 'الإسماعيلية', lat: 30.5965, lng: 32.2715 },
-  { name: 'Fayyum', nameAr: 'الفيوم', lat: 29.3084, lng: 30.8428 },
-  { name: 'Zagazig', nameAr: 'الزقازيق', lat: 30.5765, lng: 31.5041 },
-  { name: 'Aswan', nameAr: 'أسوان', lat: 24.0889, lng: 32.8998 },
-  { name: 'Damietta', nameAr: 'دمياط', lat: 31.4175, lng: 31.8144 },
-  { name: 'Damanhur', nameAr: 'دمنهور', lat: 31.0341, lng: 30.4682 },
-  { name: 'Minya', nameAr: 'المنيا', lat: 28.1099, lng: 30.7503 },
-  { name: 'Beni Suef', nameAr: 'بني سويف', lat: 29.0661, lng: 31.0994 },
-  { name: 'Qena', nameAr: 'قنا', lat: 26.1642, lng: 32.7267 },
-  { name: 'Sohag', nameAr: 'سوهاج', lat: 26.5569, lng: 31.6948 },
-  { name: 'Hurghada', nameAr: 'الغردقة', lat: 27.2579, lng: 33.8116 },
-  { name: '6th of October', nameAr: 'السادس من أكتوبر', lat: 29.9285, lng: 30.9263 },
-  { name: 'Sharm El-Sheikh', nameAr: 'شرم الشيخ', lat: 27.9158, lng: 34.3300 },
-  { name: 'Banha', nameAr: 'بنها', lat: 30.4659, lng: 31.1848 },
-  { name: 'Kafr el-Sheikh', nameAr: 'كفر الشيخ', lat: 31.1113, lng: 30.9408 },
-  { name: 'Marsa Matruh', nameAr: 'مرسى مطروح', lat: 31.3543, lng: 27.2373 },
-  { name: 'Arish', nameAr: 'العريش', lat: 31.1321, lng: 33.8034 }
+/** Countries and cities for prayer time lookup */
+export const COUNTRIES = [
+  {
+    name: 'Egypt',
+    nameAr: 'مصر',
+    cities: [
+      { name: 'Cairo', nameAr: 'القاهرة' },
+      { name: 'Alexandria', nameAr: 'الإسكندرية' },
+      { name: 'Giza', nameAr: 'الجيزة' },
+      { name: 'Shubra El-Kheima', nameAr: 'شبرا الخيمة' },
+      { name: 'Port Said', nameAr: 'بورسعيد' },
+      { name: 'Suez', nameAr: 'السويس' },
+      { name: 'Luxor', nameAr: 'الأقصر' },
+      { name: 'Al-Mansura', nameAr: 'المنصورة' },
+      { name: 'El-Mahalla El-Kubra', nameAr: 'المحلة الكبرى' },
+      { name: 'Tanta', nameAr: 'طنطا' },
+      { name: 'Asyut', nameAr: 'أسيوط' },
+      { name: 'Ismailia', nameAr: 'الإسماعيلية' },
+      { name: 'Fayyum', nameAr: 'الفيوم' },
+      { name: 'Zagazig', nameAr: 'الزقازيق' },
+      { name: 'Aswan', nameAr: 'أسوان' },
+      { name: 'Damietta', nameAr: 'دمياط' },
+      { name: 'Minya', nameAr: 'المنيا' },
+      { name: 'Beni Suef', nameAr: 'بني سويف' },
+      { name: 'Qena', nameAr: 'قنا' },
+      { name: 'Sohag', nameAr: 'سوهاج' },
+      { name: 'Hurghada', nameAr: 'الغردقة' },
+      { name: 'Sharm El-Sheikh', nameAr: 'شرم الشيخ' }
+    ]
+  },
+  {
+    name: 'Saudi Arabia',
+    nameAr: 'السعودية',
+    cities: [
+      { name: 'Riyadh', nameAr: 'الرياض' },
+      { name: 'Jeddah', nameAr: 'جدة' },
+      { name: 'Mecca', nameAr: 'مكة' },
+      { name: 'Medina', nameAr: 'المدينة' },
+      { name: 'Dammam', nameAr: 'الدمام' },
+      { name: 'Tabuk', nameAr: 'تبوك' },
+      { name: 'Taif', nameAr: 'الطائف' },
+      { name: 'Buraidah', nameAr: 'بريدة' },
+      { name: 'Abha', nameAr: 'أبها' },
+      { name: 'Khobar', nameAr: 'الخبر' }
+    ]
+  },
+  {
+    name: 'United Arab Emirates',
+    nameAr: 'الإمارات',
+    cities: [
+      { name: 'Dubai', nameAr: 'دبي' },
+      { name: 'Abu Dhabi', nameAr: 'أبوظبي' },
+      { name: 'Sharjah', nameAr: 'الشارقة' },
+      { name: 'Ajman', nameAr: 'عجمان' },
+      { name: 'Ras Al Khaimah', nameAr: 'رأس الخيمة' },
+      { name: 'Fujairah', nameAr: 'الفجيرة' }
+    ]
+  },
+  {
+    name: 'Kuwait',
+    nameAr: 'الكويت',
+    cities: [
+      { name: 'Kuwait City', nameAr: 'مدينة الكويت' },
+      { name: 'Hawalli', nameAr: 'حولي' },
+      { name: 'Salmiya', nameAr: 'السالمية' },
+      { name: 'Jahra', nameAr: 'الجهراء' }
+    ]
+  },
+  {
+    name: 'Qatar',
+    nameAr: 'قطر',
+    cities: [
+      { name: 'Doha', nameAr: 'الدوحة' },
+      { name: 'Al Wakrah', nameAr: 'الوكرة' },
+      { name: 'Al Khor', nameAr: 'الخور' }
+    ]
+  },
+  {
+    name: 'Bahrain',
+    nameAr: 'البحرين',
+    cities: [
+      { name: 'Manama', nameAr: 'المنامة' },
+      { name: 'Riffa', nameAr: 'الرفاع' },
+      { name: 'Muharraq', nameAr: 'المحرق' }
+    ]
+  },
+  {
+    name: 'Oman',
+    nameAr: 'عمان',
+    cities: [
+      { name: 'Muscat', nameAr: 'مسقط' },
+      { name: 'Salalah', nameAr: 'صلالة' },
+      { name: 'Sohar', nameAr: 'صحار' },
+      { name: 'Nizwa', nameAr: 'نزوى' }
+    ]
+  },
+  {
+    name: 'Jordan',
+    nameAr: 'الأردن',
+    cities: [
+      { name: 'Amman', nameAr: 'عمان' },
+      { name: 'Zarqa', nameAr: 'الزرقاء' },
+      { name: 'Irbid', nameAr: 'إربد' },
+      { name: 'Aqaba', nameAr: 'العقبة' },
+      { name: 'Salt', nameAr: 'السلط' }
+    ]
+  },
+  {
+    name: 'Lebanon',
+    nameAr: 'لبنان',
+    cities: [
+      { name: 'Beirut', nameAr: 'بيروت' },
+      { name: 'Tripoli', nameAr: 'طرابلس' },
+      { name: 'Sidon', nameAr: 'صيدا' },
+      { name: 'Tyre', nameAr: 'صور' }
+    ]
+  },
+  {
+    name: 'Syria',
+    nameAr: 'سوريا',
+    cities: [
+      { name: 'Damascus', nameAr: 'دمشق' },
+      { name: 'Aleppo', nameAr: 'حلب' },
+      { name: 'Homs', nameAr: 'حمص' },
+      { name: 'Latakia', nameAr: 'اللاذقية' }
+    ]
+  },
+  {
+    name: 'Iraq',
+    nameAr: 'العراق',
+    cities: [
+      { name: 'Baghdad', nameAr: 'بغداد' },
+      { name: 'Basra', nameAr: 'البصرة' },
+      { name: 'Mosul', nameAr: 'الموصل' },
+      { name: 'Erbil', nameAr: 'أربيل' },
+      { name: 'Najaf', nameAr: 'النجف' },
+      { name: 'Karbala', nameAr: 'كربلاء' }
+    ]
+  },
+  {
+    name: 'Palestine',
+    nameAr: 'فلسطين',
+    cities: [
+      { name: 'Gaza', nameAr: 'غزة' },
+      { name: 'Jerusalem', nameAr: 'القدس' },
+      { name: 'Hebron', nameAr: 'الخليل' },
+      { name: 'Nablus', nameAr: 'نابلس' },
+      { name: 'Ramallah', nameAr: 'رام الله' }
+    ]
+  },
+  {
+    name: 'Yemen',
+    nameAr: 'اليمن',
+    cities: [
+      { name: 'Sanaa', nameAr: 'صنعاء' },
+      { name: 'Aden', nameAr: 'عدن' },
+      { name: 'Taiz', nameAr: 'تعز' },
+      { name: 'Hodeidah', nameAr: 'الحديدة' }
+    ]
+  },
+  {
+    name: 'Libya',
+    nameAr: 'ليبيا',
+    cities: [
+      { name: 'Tripoli', nameAr: 'طرابلس' },
+      { name: 'Benghazi', nameAr: 'بنغازي' },
+      { name: 'Misrata', nameAr: 'مصراتة' },
+      { name: 'Bayda', nameAr: 'البيضاء' }
+    ]
+  },
+  {
+    name: 'Tunisia',
+    nameAr: 'تونس',
+    cities: [
+      { name: 'Tunis', nameAr: 'تونس' },
+      { name: 'Sfax', nameAr: 'صفاقس' },
+      { name: 'Sousse', nameAr: 'سوسة' },
+      { name: 'Kairouan', nameAr: 'القيروان' }
+    ]
+  },
+  {
+    name: 'Algeria',
+    nameAr: 'الجزائر',
+    cities: [
+      { name: 'Algiers', nameAr: 'الجزائر' },
+      { name: 'Oran', nameAr: 'وهران' },
+      { name: 'Constantine', nameAr: 'قسنطينة' },
+      { name: 'Annaba', nameAr: 'عنابة' }
+    ]
+  },
+  {
+    name: 'Morocco',
+    nameAr: 'المغرب',
+    cities: [
+      { name: 'Casablanca', nameAr: 'الدار البيضاء' },
+      { name: 'Rabat', nameAr: 'الرباط' },
+      { name: 'Marrakesh', nameAr: 'مراكش' },
+      { name: 'Fez', nameAr: 'فاس' },
+      { name: 'Tangier', nameAr: 'طنجة' },
+      { name: 'Agadir', nameAr: 'أغادير' }
+    ]
+  },
+  {
+    name: 'Sudan',
+    nameAr: 'السودان',
+    cities: [
+      { name: 'Khartoum', nameAr: 'الخرطوم' },
+      { name: 'Omdurman', nameAr: 'أم درمان' },
+      { name: 'Port Sudan', nameAr: 'بور سودان' }
+    ]
+  },
+  {
+    name: 'Turkey',
+    nameAr: 'تركيا',
+    cities: [
+      { name: 'Istanbul', nameAr: 'إسطنبول' },
+      { name: 'Ankara', nameAr: 'أنقرة' },
+      { name: 'Izmir', nameAr: 'إزمير' },
+      { name: 'Bursa', nameAr: 'بورصة' },
+      { name: 'Antalya', nameAr: 'أنطاليا' },
+      { name: 'Konya', nameAr: 'قونية' }
+    ]
+  },
+  {
+    name: 'Iran',
+    nameAr: 'إيران',
+    cities: [
+      { name: 'Tehran', nameAr: 'طهران' },
+      { name: 'Mashhad', nameAr: 'مشهد' },
+      { name: 'Isfahan', nameAr: 'أصفهان' },
+      { name: 'Shiraz', nameAr: 'شيراز' },
+      { name: 'Tabriz', nameAr: 'تبريز' }
+    ]
+  },
+  {
+    name: 'Pakistan',
+    nameAr: 'باكستان',
+    cities: [
+      { name: 'Karachi', nameAr: 'كراتشي' },
+      { name: 'Lahore', nameAr: 'لاهور' },
+      { name: 'Islamabad', nameAr: 'إسلام آباد' },
+      { name: 'Faisalabad', nameAr: 'فيصل آباد' },
+      { name: 'Rawalpindi', nameAr: 'راولبندي' },
+      { name: 'Peshawar', nameAr: 'بيشاور' }
+    ]
+  },
+  {
+    name: 'Bangladesh',
+    nameAr: 'بنغلاديش',
+    cities: [
+      { name: 'Dhaka', nameAr: 'داكا' },
+      { name: 'Chittagong', nameAr: 'شيتاغونغ' },
+      { name: 'Khulna', nameAr: 'خولنا' },
+      { name: 'Rajshahi', nameAr: 'راجشاهي' }
+    ]
+  },
+  {
+    name: 'Afghanistan',
+    nameAr: 'أفغانستان',
+    cities: [
+      { name: 'Kabul', nameAr: 'كابل' },
+      { name: 'Herat', nameAr: 'هرات' },
+      { name: 'Kandahar', nameAr: 'قندهار' },
+      { name: 'Mazar-i-Sharif', nameAr: 'مزار شريف' }
+    ]
+  },
+  {
+    name: 'India',
+    nameAr: 'الهند',
+    cities: [
+      { name: 'Mumbai', nameAr: 'مومباي' },
+      { name: 'Delhi', nameAr: 'دلهي' },
+      { name: 'Hyderabad', nameAr: 'حيدر آباد' },
+      { name: 'Chennai', nameAr: 'تشيناي' },
+      { name: 'Bangalore', nameAr: 'بنغالور' },
+      { name: 'Kolkata', nameAr: 'كولكاتا' },
+      { name: 'Ahmedabad', nameAr: 'أحمد آباد' },
+      { name: 'Lucknow', nameAr: 'لكنو' }
+    ]
+  },
+  {
+    name: 'Malaysia',
+    nameAr: 'ماليزيا',
+    cities: [
+      { name: 'Kuala Lumpur', nameAr: 'كوالالمبور' },
+      { name: 'George Town', nameAr: 'جورج تاون' },
+      { name: 'Johor Bahru', nameAr: 'جوهور باهرو' },
+      { name: 'Kota Kinabalu', nameAr: 'كوتا كينابالو' }
+    ]
+  },
+  {
+    name: 'Indonesia',
+    nameAr: 'إندونيسيا',
+    cities: [
+      { name: 'Jakarta', nameAr: 'جاكرتا' },
+      { name: 'Surabaya', nameAr: 'سورابايا' },
+      { name: 'Bandung', nameAr: 'باندونغ' },
+      { name: 'Medan', nameAr: 'مدان' },
+      { name: 'Makassar', nameAr: 'ماكاسار' }
+    ]
+  },
+  {
+    name: 'Brunei',
+    nameAr: 'بروناي',
+    cities: [
+      { name: 'Bandar Seri Begawan', nameAr: 'بندر سري بكاوان' }
+    ]
+  },
+  {
+    name: 'Nigeria',
+    nameAr: 'نيجيريا',
+    cities: [
+      { name: 'Lagos', nameAr: 'لاغوس' },
+      { name: 'Kano', nameAr: 'كانو' },
+      { name: 'Ibadan', nameAr: 'إبادان' },
+      { name: 'Abuja', nameAr: 'أبوجا' }
+    ]
+  },
+  {
+    name: 'Somalia',
+    nameAr: 'الصومال',
+    cities: [
+      { name: 'Mogadishu', nameAr: 'مقديشو' },
+      { name: 'Hargeisa', nameAr: 'هرجيسا' },
+      { name: 'Kismayo', nameAr: 'كيسمايو' }
+    ]
+  },
+  {
+    name: 'Ethiopia',
+    nameAr: 'إثيوبيا',
+    cities: [
+      { name: 'Addis Ababa', nameAr: 'أديس أبابا' },
+      { name: 'Dire Dawa', nameAr: 'دير داوا' }
+    ]
+  },
+  {
+    name: 'United Kingdom',
+    nameAr: 'المملكة المتحدة',
+    cities: [
+      { name: 'London', nameAr: 'لندن' },
+      { name: 'Birmingham', nameAr: 'برمنغهام' },
+      { name: 'Manchester', nameAr: 'مانشستر' },
+      { name: 'Glasgow', nameAr: 'غلاسكو' },
+      { name: 'Bradford', nameAr: 'برادفورد' },
+      { name: 'Leeds', nameAr: 'ليدز' }
+    ]
+  },
+  {
+    name: 'United States',
+    nameAr: 'الولايات المتحدة',
+    cities: [
+      { name: 'New York', nameAr: 'نيويورك' },
+      { name: 'Los Angeles', nameAr: 'لوس أنجلوس' },
+      { name: 'Chicago', nameAr: 'شيكاغو' },
+      { name: 'Houston', nameAr: 'هيوستن' },
+      { name: 'Philadelphia', nameAr: 'فيلادلفيا' },
+      { name: 'Detroit', nameAr: 'ديترويت' },
+      { name: 'Dallas', nameAr: 'دالاس' },
+      { name: 'San Francisco', nameAr: 'سان فرانسيسكو' }
+    ]
+  },
+  {
+    name: 'Canada',
+    nameAr: 'كندا',
+    cities: [
+      { name: 'Toronto', nameAr: 'تورنتو' },
+      { name: 'Montreal', nameAr: 'مونتريال' },
+      { name: 'Vancouver', nameAr: 'فانكوفر' },
+      { name: 'Ottawa', nameAr: 'أوتاوا' },
+      { name: 'Calgary', nameAr: 'كالغاري' }
+    ]
+  },
+  {
+    name: 'France',
+    nameAr: 'فرنسا',
+    cities: [
+      { name: 'Paris', nameAr: 'باريس' },
+      { name: 'Marseille', nameAr: 'مارسيليا' },
+      { name: 'Lyon', nameAr: 'ليون' },
+      { name: 'Toulouse', nameAr: 'تولوز' },
+      { name: 'Nice', nameAr: 'نيس' }
+    ]
+  },
+  {
+    name: 'Germany',
+    nameAr: 'ألمانيا',
+    cities: [
+      { name: 'Berlin', nameAr: 'برلين' },
+      { name: 'Hamburg', nameAr: 'هامبورغ' },
+      { name: 'Munich', nameAr: 'ميونخ' },
+      { name: 'Cologne', nameAr: 'كولونيا' },
+      { name: 'Frankfurt', nameAr: 'فرانكفورت' }
+    ]
+  },
+  {
+    name: 'Australia',
+    nameAr: 'أستراليا',
+    cities: [
+      { name: 'Sydney', nameAr: 'سيدني' },
+      { name: 'Melbourne', nameAr: 'ملبورن' },
+      { name: 'Brisbane', nameAr: 'بريزبان' },
+      { name: 'Perth', nameAr: 'برث' },
+      { name: 'Adelaide', nameAr: 'أديلايد' }
+    ]
+  },
+  {
+    name: 'Russia',
+    nameAr: 'روسيا',
+    cities: [
+      { name: 'Moscow', nameAr: 'موسكو' },
+      { name: 'Saint Petersburg', nameAr: 'سانت بطرسبرغ' },
+      { name: 'Kazan', nameAr: 'قازان' },
+      { name: 'Ufa', nameAr: 'أوفا' }
+    ]
+  },
+  {
+    name: 'China',
+    nameAr: 'الصين',
+    cities: [
+      { name: 'Beijing', nameAr: 'بكين' },
+      { name: 'Shanghai', nameAr: 'شنغهاي' },
+      { name: 'Guangzhou', nameAr: 'قوانغتشو' },
+      { name: 'Shenzhen', nameAr: 'شنتشن' },
+      { name: 'Urumqi', nameAr: 'أورومتشي' }
+    ]
+  }
 ];
 
 /** Default user settings */
 export const DEFAULT_SETTINGS = {
-  city: EGYPTIAN_CITIES[0], // Cairo
+  city: 'Cairo',
+  country: 'Egypt',
   method: DEFAULT_METHOD,
   timeFormat: TIME_FORMAT.H12,
   language: LANGUAGE.EN,
-  provider: 'aladhan',
-  // custom coordinates removed — always use selected city
+  provider: 'aladhan'
 };
 
 /** Alarm constants */

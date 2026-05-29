@@ -1,12 +1,13 @@
 import './options.css';
-import { EGYPTIAN_CITIES, DEFAULT_SETTINGS } from '../shared/config.js';
+import { COUNTRIES, DEFAULT_SETTINGS } from '../shared/config.js';
 import { translatePage } from '../shared/translations.js';
 
 let currentSettings = { ...DEFAULT_SETTINGS };
 
 async function init() {
   await loadSettings();
-  populateCities();
+  populateCountries();
+  populateCities(currentSettings.country);
   bindValues();
   setupListeners();
   applyLanguageDirection();
@@ -24,10 +25,23 @@ async function loadSettings() {
   }
 }
 
-function populateCities() {
+function populateCountries() {
+  const select = document.getElementById('country');
+  select.innerHTML = '';
+  for (const country of COUNTRIES) {
+    const opt = document.createElement('option');
+    opt.value = country.name;
+    opt.textContent = currentSettings.language === 'ar' ? country.nameAr : country.name;
+    select.appendChild(opt);
+  }
+}
+
+function populateCities(countryName) {
   const select = document.getElementById('city');
   select.innerHTML = '';
-  for (const city of EGYPTIAN_CITIES) {
+  const country = COUNTRIES.find(c => c.name === countryName);
+  if (!country) { return; }
+  for (const city of country.cities) {
     const opt = document.createElement('option');
     opt.value = city.name;
     opt.textContent = currentSettings.language === 'ar' ? city.nameAr : city.name;
@@ -37,7 +51,9 @@ function populateCities() {
 
 function bindValues() {
   const s = currentSettings;
-  document.getElementById('city').value = s.city?.name || EGYPTIAN_CITIES[0].name;
+  document.getElementById('country').value = s.country || COUNTRIES[0].name;
+  populateCities(s.country || COUNTRIES[0].name);
+  document.getElementById('city').value = s.city || COUNTRIES[0].cities[0].name;
   document.getElementById('method').value = String(s.method);
   document.getElementById('time-format').value = s.timeFormat;
   document.getElementById('language').value = s.language;
@@ -45,15 +61,24 @@ function bindValues() {
 }
 
 function setupListeners() {
+  document.getElementById('country').addEventListener('change', onCountryChange);
   document.getElementById('btn-save').addEventListener('click', saveSettings);
 }
 
-async function saveSettings() {
-  const cityName = document.getElementById('city').value;
-  const city = EGYPTIAN_CITIES.find(c => c.name === cityName) || EGYPTIAN_CITIES[0];
+function onCountryChange() {
+  const countryName = document.getElementById('country').value;
+  populateCities(countryName);
+  // Select first city of new country
+  const country = COUNTRIES.find(c => c.name === countryName);
+  if (country && country.cities.length > 0) {
+    document.getElementById('city').value = country.cities[0].name;
+  }
+}
 
+async function saveSettings() {
   const newSettings = {
-    city,
+    country: document.getElementById('country').value,
+    city: document.getElementById('city').value,
     method: parseInt(document.getElementById('method').value, 10),
     timeFormat: document.getElementById('time-format').value,
     language: document.getElementById('language').value,
@@ -63,7 +88,6 @@ async function saveSettings() {
   try {
     await chrome.runtime.sendMessage({ type: 'SAVE_SETTINGS', payload: newSettings });
     showToast('Saved');
-    // Reload page so new language/theme takes effect immediately
     window.location.reload();
   } catch (e) {
     showToast('Error saving settings');

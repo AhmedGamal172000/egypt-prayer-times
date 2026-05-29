@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Egypt Prayer Times",
+    "message": "Prayer Times",
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "Accurate Muslim prayer times for Egypt with live API and offline fallback.",
+    "message": "Accurate Muslim prayer times for any city worldwide with live API and offline fallback.",
     "description": "Extension description"
   },
   "Fajr": { "message": "Fajr" },
@@ -16,6 +16,7 @@
   "NextPrayer": { "message": "Next Prayer" },
   "TimeRemaining": { "message": "Time Remaining" },
   "Settings": { "message": "Settings" },
+  "Country": { "message": "Country" },
   "City": { "message": "City" },
   "CalculationMethod": { "message": "Calculation Method" },
   "Madhab": { "message": "Madhab" },
