@@ -41,7 +41,6 @@ function bindValues() {
   document.getElementById('method').value = String(s.method);
   document.getElementById('time-format').value = s.timeFormat;
   document.getElementById('language').value = s.language;
-  document.getElementById('theme').value = s.theme;
   document.getElementById('provider').value = s.provider;
 }
 
@@ -58,7 +57,6 @@ async function saveSettings() {
     method: parseInt(document.getElementById('method').value, 10),
     timeFormat: document.getElementById('time-format').value,
     language: document.getElementById('language').value,
-    theme: document.getElementById('theme').value,
     provider: document.getElementById('provider').value
   };
 

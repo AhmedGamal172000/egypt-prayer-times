@@ -21,10 +21,7 @@
   "Madhab": { "message": "المذهب" },
   "TimeFormat": { "message": "تنسيق الوقت" },
   "Language": { "message": "اللغة" },
-  "Theme": { "message": "المظهر" },
-  "Light": { "message": "فاتح" },
-  "Dark": { "message": "داكن" },
-  "System": { "message": "النظام" },
+
   "Shafi": { "message": "شافعي" },
   "Hanafi": { "message": "حنفي" },
   "Hour12": { "message": "١٢ ساعة" },

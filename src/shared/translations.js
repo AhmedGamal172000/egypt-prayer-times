@@ -21,10 +21,7 @@ const TRANSLATIONS = {
     Madhab: 'Madhab',
     TimeFormat: 'Time Format',
     Language: 'Language',
-    Theme: 'Theme',
-    Light: 'Light',
-    Dark: 'Dark',
-    System: 'System',
+
     Shafi: 'Shafi',
     Hanafi: 'Hanafi',
     Hour12: '12-hour',
@@ -64,10 +61,7 @@ const TRANSLATIONS = {
     Madhab: 'المذهب',
     TimeFormat: 'تنسيق الوقت',
     Language: 'اللغة',
-    Theme: 'المظهر',
-    Light: 'فاتح',
-    Dark: 'داكن',
-    System: 'النظام',
+
     Shafi: 'شافعي',
     Hanafi: 'حنفي',
     Hour12: '١٢ ساعة',

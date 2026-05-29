@@ -21,10 +21,7 @@
   "Madhab": { "message": "Madhab" },
   "TimeFormat": { "message": "Time Format" },
   "Language": { "message": "Language" },
-  "Theme": { "message": "Theme" },
-  "Light": { "message": "Light" },
-  "Dark": { "message": "Dark" },
-  "System": { "message": "System" },
+
   "Shafi": { "message": "Shafi" },
   "Hanafi": { "message": "Hanafi" },
   "Hour12": { "message": "12-hour" },

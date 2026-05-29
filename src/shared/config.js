@@ -31,13 +31,6 @@ export const TIME_FORMAT = {
   H24: '24h'
 };
 
-/** UI Themes */
-export const THEME = {
-  LIGHT: 'light',
-  DARK: 'dark',
-  SYSTEM: 'system'
-};
-
 /** Supported languages */
 export const LANGUAGE = {
   EN: 'en',
@@ -89,7 +82,6 @@ export const DEFAULT_SETTINGS = {
   method: DEFAULT_METHOD,
   timeFormat: TIME_FORMAT.H12,
   language: LANGUAGE.EN,
-  theme: THEME.SYSTEM,
   provider: 'aladhan',
   // custom coordinates removed — always use selected city
 };
