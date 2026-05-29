@@ -88,7 +88,7 @@ async function updateBadge() {
     }
     let badgeText = '';
     if (remaining.hours > 0) {
-      badgeText = `${remaining.hours}h`;
+      badgeText = `${remaining.hours}h${remaining.minutes}`;
     } else {
       badgeText = `${remaining.minutes}m`;
     }
