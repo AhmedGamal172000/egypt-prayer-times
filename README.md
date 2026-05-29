@@ -50,6 +50,8 @@ git clone https://github.com/AhmedGamal172000/egypt-prayer-times.git
 5. Select the **`dist/`** folder inside the extracted project
 6. Done! The extension icon will appear in your toolbar
 
+![Load Unpacked](docs/screenshots/chrome-load-unpacked.png)
+
 #### Step 3: Pin the Extension (Optional)
 
 - Click the **puzzle piece** 🧩 in the Chrome toolbar
