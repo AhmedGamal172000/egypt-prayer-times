@@ -1,5 +1,5 @@
 import './popup.css';
-import { PRAYER_NAMES, DATA_SOURCE, DEFAULT_SETTINGS } from '../shared/config.js';
+import { PRAYER_NAMES, DATA_SOURCE, DEFAULT_SETTINGS, COUNTRIES } from '../shared/config.js';
 import { formatTime, formatGregorianDate, formatHijriFromAPI, getTimeRemaining, formatCountdown } from '../shared/utils.js';
 import { t, translatePage } from '../shared/translations.js';
 
@@ -109,6 +109,7 @@ async function render() {
     const now = new Date();
 
     renderDate(data.hijri);
+    renderLocation();
     renderPrayerList(data.times, now);
     renderStatus(data.source);
   } catch (e) {
@@ -122,6 +123,17 @@ function renderDate(hijri) {
   const gregorian = formatGregorianDate(now, settings.language === 'ar' ? 'ar-EG' : 'en-US');
   const hijriStr = formatHijriFromAPI(hijri, settings.language);
   dateEl.textContent = hijriStr ? `${gregorian} · ${hijriStr}` : gregorian;
+}
+
+function renderLocation() {
+  const el = document.getElementById('location-display');
+  const country = COUNTRIES.find(c => c.name === settings.country);
+  const cityObj = country?.cities.find(city => city.name === settings.city);
+
+  const countryName = settings.language === 'ar' && country ? country.nameAr : (country?.name || settings.country);
+  const cityName = settings.language === 'ar' && cityObj ? cityObj.nameAr : (cityObj?.name || settings.city);
+
+  el.textContent = `${cityName}, ${countryName}`;
 }
 
 function renderPrayerList(times, now) {
