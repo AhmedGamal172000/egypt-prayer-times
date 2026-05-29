@@ -19,6 +19,13 @@ async function loadSettings() {
     const res = await chrome.runtime.sendMessage({ type: 'GET_SETTINGS' });
     if (res?.success) {
       currentSettings = { ...DEFAULT_SETTINGS, ...res.data };
+      // Migration: old format stored city as object {name, nameAr, lat, lng}
+      if (currentSettings.city && typeof currentSettings.city === 'object') {
+        currentSettings.city = currentSettings.city.name || DEFAULT_SETTINGS.city;
+      }
+      if (!currentSettings.country) {
+        currentSettings.country = DEFAULT_SETTINGS.country;
+      }
     }
   } catch (e) {
     console.error('[Options] loadSettings failed', e);

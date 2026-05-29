@@ -135,7 +135,14 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const data = await prayerEngine.refresh();
         sendResponse({ success: true, data });
       } else if (message.type === 'GET_SETTINGS') {
-        const settings = await store.get('settings', DEFAULT_SETTINGS);
+        let settings = await store.get('settings', DEFAULT_SETTINGS);
+        // Migration: old format stored city as object {name, nameAr, lat, lng}
+        if (settings.city && typeof settings.city === 'object') {
+          settings = { ...settings, city: settings.city.name || DEFAULT_SETTINGS.city };
+        }
+        if (!settings.country) {
+          settings = { ...settings, country: DEFAULT_SETTINGS.country };
+        }
         sendResponse({ success: true, data: settings });
       } else if (message.type === 'SAVE_SETTINGS') {
         await store.set('settings', { ...DEFAULT_SETTINGS, ...message.payload });
