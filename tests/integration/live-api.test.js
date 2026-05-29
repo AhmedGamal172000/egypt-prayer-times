@@ -7,7 +7,9 @@ import { EGYPTIAN_CITIES } from '../../src/shared/config.js';
  * Focus: prayer time accuracy, hijri dates, DST handling, multi-city coverage.
  */
 
-describe('LIVE API — Aladhan.com Integration', () => {
+const describeLive = process.env.CI ? describe.skip : describe;
+
+describeLive('LIVE API — Aladhan.com Integration', () => {
   const provider = new AladhanProvider();
 
   // Helper: parse "HH:MM" to minutes from midnight
