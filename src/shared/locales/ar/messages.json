@@ -52,10 +52,7 @@
   "Expand": { "message": "توسيع" },
   "Save": { "message": "حفظ" },
   "CurrentTime": { "message": "الوقت الحالي" },
-  "CustomCoordinates": { "message": "إحداثيات مخصصة" },
-  "Latitude": { "message": "خط العرض" },
-  "Longitude": { "message": "خط الطول" },
-  "UseCustomCoordinates": { "message": "استخدام إحداثيات مخصصة" },
+
   "DataSource": { "message": "مصدر البيانات" },
   "Provider": { "message": "المزود" }
 }

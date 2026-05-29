@@ -91,9 +91,7 @@ export const DEFAULT_SETTINGS = {
   language: LANGUAGE.EN,
   theme: THEME.SYSTEM,
   provider: 'aladhan',
-  customLat: null,
-  customLng: null,
-  useCustomCoords: false
+  // custom coordinates removed — always use selected city
 };
 
 /** Alarm constants */

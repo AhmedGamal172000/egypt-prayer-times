@@ -85,7 +85,6 @@ body {
   width: auto;
 }
 
-.coords.hidden { display: none; }
 
 .actions {
   display: flex;

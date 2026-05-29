@@ -43,10 +43,7 @@ const TRANSLATIONS = {
     Expand: 'Expand',
     Save: 'Save',
     CurrentTime: 'Current Time',
-    CustomCoordinates: 'Custom Coordinates',
-    Latitude: 'Latitude',
-    Longitude: 'Longitude',
-    UseCustomCoordinates: 'Use custom coordinates',
+
     DataSource: 'Data Source',
     Provider: 'Provider'
   },
@@ -89,10 +86,7 @@ const TRANSLATIONS = {
     Expand: 'توسيع',
     Save: 'حفظ',
     CurrentTime: 'الوقت الحالي',
-    CustomCoordinates: 'إحداثيات مخصصة',
-    Latitude: 'خط العرض',
-    Longitude: 'خط الطول',
-    UseCustomCoordinates: 'استخدام إحداثيات مخصصة',
+
     DataSource: 'مصدر البيانات',
     Provider: 'المزود'
   }

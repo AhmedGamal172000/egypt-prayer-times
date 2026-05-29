@@ -38,26 +38,15 @@ function populateCities() {
 function bindValues() {
   const s = currentSettings;
   document.getElementById('city').value = s.city?.name || EGYPTIAN_CITIES[0].name;
-  document.getElementById('use-custom-coords').checked = !!s.useCustomCoords;
-  document.getElementById('lat').value = s.customLat ?? '';
-  document.getElementById('lng').value = s.customLng ?? '';
   document.getElementById('method').value = String(s.method);
   document.getElementById('time-format').value = s.timeFormat;
   document.getElementById('language').value = s.language;
   document.getElementById('theme').value = s.theme;
   document.getElementById('provider').value = s.provider;
-
-  toggleCustomCoords();
 }
 
 function setupListeners() {
-  document.getElementById('use-custom-coords').addEventListener('change', toggleCustomCoords);
   document.getElementById('btn-save').addEventListener('click', saveSettings);
-}
-
-function toggleCustomCoords() {
-  const checked = document.getElementById('use-custom-coords').checked;
-  document.getElementById('custom-coords-group').classList.toggle('hidden', !checked);
 }
 
 async function saveSettings() {
@@ -66,9 +55,6 @@ async function saveSettings() {
 
   const newSettings = {
     city,
-    useCustomCoords: document.getElementById('use-custom-coords').checked,
-    customLat: parseFloat(document.getElementById('lat').value) || null,
-    customLng: parseFloat(document.getElementById('lng').value) || null,
     method: parseInt(document.getElementById('method').value, 10),
     timeFormat: document.getElementById('time-format').value,
     language: document.getElementById('language').value,

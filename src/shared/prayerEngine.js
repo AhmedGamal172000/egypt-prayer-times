@@ -54,10 +54,10 @@ export class PrayerEngine {
   async refresh() {
     const settings = await this._getSettings();
     try {
-      const city = settings.useCustomCoords ? null : settings.city.name;
-      const country = settings.useCustomCoords ? null : 'Egypt';
+      const city = settings.city.name;
+      const country = 'Egypt';
 
-      if (!settings.useCustomCoords && city) {
+      if (city) {
         const monthly = await this.provider.fetchMonthly(city, country, settings.method, {
           school: settings.madhab === 'Hanafi' ? 1 : 0
         });
