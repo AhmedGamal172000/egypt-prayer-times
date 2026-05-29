@@ -1,4 +1,4 @@
-import { formatTime, getTimeRemaining, formatCountdown } from '../src/shared/utils.js';
+import { formatTime, getTimeRemaining, formatCountdown, formatHijriFromAPI } from '../src/shared/utils.js';
 
 describe('utils', () => {
   test('formatTime 24h', () => {
@@ -32,5 +32,25 @@ describe('utils', () => {
   test('formatCountdown formats correctly', () => {
     expect(formatCountdown({ hours: 1, minutes: 2, seconds: 3 })).toBe('01:02:03');
     expect(formatCountdown(null)).toBe('00:00:00');
+  });
+
+  test('formatHijriFromAPI English', () => {
+    const hijri = { day: '11', month: { en: 'Dhu al-Hijjah', ar: 'ذو الحجة' }, year: '1447' };
+    expect(formatHijriFromAPI(hijri, 'en')).toBe('11 Dhu al-Hijjah 1447 AH');
+  });
+
+  test('formatHijriFromAPI Arabic', () => {
+    const hijri = { day: '11', month: { en: 'Dhu al-Hijjah', ar: 'ذو الحجة' }, year: '1447' };
+    expect(formatHijriFromAPI(hijri, 'ar')).toBe('11 ذو الحجة 1447 هـ');
+  });
+
+  test('formatHijriFromAPI falls back to English month if Arabic missing', () => {
+    const hijri = { day: '1', month: { en: 'Muharram' }, year: '1448' };
+    expect(formatHijriFromAPI(hijri, 'ar')).toBe('1 Muharram 1448 هـ');
+  });
+
+  test('formatHijriFromAPI returns empty string for null input', () => {
+    expect(formatHijriFromAPI(null, 'en')).toBe('');
+    expect(formatHijriFromAPI({}, 'en')).toBe('');
   });
 });
