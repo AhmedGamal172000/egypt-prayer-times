@@ -1,6 +1,6 @@
 import './options.css';
 import { EGYPTIAN_CITIES, DEFAULT_SETTINGS } from '../shared/config.js';
-import { translatePage } from '../shared/utils.js';
+import { translatePage } from '../shared/translations.js';
 
 let currentSettings = { ...DEFAULT_SETTINGS };
 
@@ -10,7 +10,7 @@ async function init() {
   bindValues();
   setupListeners();
   applyLanguageDirection();
-  translatePage();
+  translatePage(currentSettings.language);
 }
 
 async function loadSettings() {

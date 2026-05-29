@@ -1,4 +1,5 @@
 import { BaseNotification } from '../shared/base/BaseNotification.js';
+import { t } from '../shared/translations.js';
 
 /**
  * Extensible notification manager for prayer time alerts.
@@ -60,10 +61,18 @@ export class NotificationManager extends BaseNotification {
    * @param {string} prayerName
    */
   async showNotification(prayerName) {
-    const title = chrome.i18n.getMessage('extName') || 'Egypt Prayer Times';
-    const prayerLocalized = chrome.i18n.getMessage(prayerName) || prayerName;
-    const message = chrome.i18n.getMessage('NotificationMessage', [prayerLocalized])
-      || `It's time for ${prayerLocalized} prayer`;
+    // Get user's language preference from storage; fallback to system locale
+    let lang = 'en';
+    try {
+      const store = this.dependencies.store;
+      const settings = await store.get('settings', {});
+      lang = settings.language || 'en';
+    } catch {
+      // fallback stays 'en'
+    }
+    const title = t('extName', lang);
+    const prayerLocalized = t(prayerName, lang);
+    const message = t('NotificationMessage', lang, prayerLocalized);
     await chrome.notifications.create(`prayer-alert-${prayerName}-${Date.now()}`, {
       type: 'basic',
       iconUrl: 'assets/icons/icon128.png',

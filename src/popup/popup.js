@@ -1,6 +1,7 @@
 import './popup.css';
 import { PRAYER_NAMES, DATA_SOURCE, DEFAULT_SETTINGS } from '../shared/config.js';
-import { formatTime, formatGregorianDate, formatHijriFromAPI, getTimeRemaining, formatCountdown, translatePage } from '../shared/utils.js';
+import { formatTime, formatGregorianDate, formatHijriFromAPI, getTimeRemaining, formatCountdown } from '../shared/utils.js';
+import { t, translatePage } from '../shared/translations.js';
 
 let settings = { ...DEFAULT_SETTINGS };
 let clockInterval = null;
@@ -9,7 +10,7 @@ let countdownInterval = null;
 async function init() {
   settings = await getSettings();
   applyLanguageDirection();
-  translatePage();
+  translatePage(settings.language);
   await refreshAndRender();
   startClock();
   startCountdown();
@@ -45,13 +46,7 @@ function applyLanguageDirection() {
   html.dir = settings.language === 'ar' ? 'rtl' : 'ltr';
 }
 
-function t(key) {
-  try {
-    return chrome.i18n.getMessage(key) || key;
-  } catch {
-    return key;
-  }
-}
+
 
 function setupListeners() {
   document.getElementById('btn-settings').addEventListener('click', () => {

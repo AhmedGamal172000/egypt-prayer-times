@@ -1,5 +1,6 @@
 import './extendedView.css';
 import { formatTime, formatGregorianDate, getTimeRemaining, formatCountdown } from '../shared/utils.js';
+import { t, translatePage } from '../shared/translations.js';
 import { DEFAULT_SETTINGS } from '../shared/config.js';
 
 let settings = { ...DEFAULT_SETTINGS };
@@ -8,6 +9,7 @@ let interval = null;
 async function init() {
   settings = await getSettings();
   applyLanguageDirection();
+  translatePage(settings.language);
   update();
   interval = setInterval(update, 1000);
 }
@@ -28,9 +30,7 @@ function applyLanguageDirection() {
   html.dir = settings.language === 'ar' ? 'rtl' : 'ltr';
 }
 
-function t(key) {
-  try { return chrome.i18n.getMessage(key) || key; } catch { return key; }
-}
+
 
 async function update() {
   try {
